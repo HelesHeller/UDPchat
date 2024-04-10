@@ -8,7 +8,7 @@ namespace Server
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=HELES; Database=[UserRegistrationDB]; Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=HELES; Database=UserRegistrationDB; Trusted_Connection=True;");
             }
         }
     }
