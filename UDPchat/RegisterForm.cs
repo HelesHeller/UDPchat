@@ -11,7 +11,7 @@ namespace UDPChat
             InitializeComponent();
         }
 
-        private void btnRegister_Click(object sender, EventArgs e)
+        public void btnRegister_Click(object sender, EventArgs e)
         {
 
             string nickname = txtUsername.Text;

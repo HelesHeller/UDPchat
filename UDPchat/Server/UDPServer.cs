@@ -9,7 +9,7 @@ namespace Server
 {
     public class UDPServer
     {
-        private const int serverPort = 12345;
+        private const int serverPort = 12121;
         private UdpClient client;
         private IPEndPoint serverEndPoint;
         private string nickname;
@@ -24,7 +24,7 @@ namespace Server
 
         public void StartListening()
         {
-            client.Client.Bind(new IPEndPoint(IPAddress.Any, 12345));
+            client.Client.Bind(new IPEndPoint(IPAddress.Any, 12121));
             Thread receiveThread = new Thread(ReceiveMessages);
             receiveThread.Start();
         }

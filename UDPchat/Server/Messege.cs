@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace UDPchat.Server
 {
-    public class User
+    public class Message
     {
-        public string ID {  get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-
+        public int Id { get; set; }
+        public string Text { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }
