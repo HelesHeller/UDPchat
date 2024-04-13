@@ -5,15 +5,18 @@ using System.Text;
 using System.Threading;
 
 
-namespace Server
+namespace UDPServer
 {
+
     public class UDPServer
     {
         private const int serverPort = 12121;
         private UdpClient client;
         private IPEndPoint serverEndPoint;
         private string nickname;
-        
+        private List<string> chatList;
+        private List<string> participantList;
+
 
         public UDPServer(string nickname)
         {
@@ -59,6 +62,18 @@ namespace Server
                 byte[] data = Encoding.Unicode.GetBytes(message);
                 client.Send(data, data.Length, serverEndPoint);
             }
+            
+
+
         }
+        public List<string> GetChatList()
+            {
+                return chatList;
+            }
+
+            public List<string> GetParticipantList()
+            {
+                return participantList;
+            }
     }
 }

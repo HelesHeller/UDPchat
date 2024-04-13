@@ -1,29 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using UDPChat;
-using UDPchat.Server;
-
-
 
 namespace UDPchat
 {
     public partial class LoginForm : Form
     {
-        private Server.ApplicationContext db = new Server.ApplicationContext();
+        private ApplicationContext db = new ApplicationContext();
 
-        public LoginForm()
-        {
-            InitializeComponent();
-        }
+        
 
-        public void btnLogin_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text;
             string password = txtPassword.Text;
@@ -41,24 +30,11 @@ namespace UDPchat
             }
         }
 
-
-
-
         private void linkRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Создаем новый экземпляр RegisterForm и отображаем его
             RegisterForm registrationForm = new RegisterForm();
             registrationForm.Show();
         }
-
-
-
-
-
     }
 }
-    
-
-
-
-
