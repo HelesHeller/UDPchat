@@ -67,7 +67,7 @@
             panelChats.Name = "panelChats";
             panelChats.Size = new Size(116, 419);
             panelChats.TabIndex = 3;
-            panelChats.Paint += panelChats_Paint;
+            //panelChats.Paint += panelChats_Paint;
             // 
             // panelParticipants
             // 

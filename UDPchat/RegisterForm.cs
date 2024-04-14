@@ -1,40 +1,49 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace UDPChat
+namespace UDPchat
 {
     public partial class RegisterForm : Form
     {
+        private readonly UDPServer.ApplicationContext dbContext;
+
+
         public RegisterForm()
         {
             InitializeComponent();
+            dbContext = new UDPServer.ApplicationContext();
         }
 
-        public void btnRegister_Click(object sender, EventArgs e)
+        private void btnRegister_Click(object sender, EventArgs e)
         {
-
-            string nickname = txtUsername.Text;
+            string username = txtUsername.Text;
             string password = txtPassword.Text;
 
-            // Проверка наличия имени пользователя и пароля
-            if (!string.IsNullOrEmpty(nickname) && !string.IsNullOrEmpty(password))
+            // Проверка наличия пользователя с таким именем в базе данных
+            var existingUser = dbContext.Users.FirstOrDefault(u => u.Username == username);
+            if (existingUser != null)
             {
-                // Здесь можно добавить логику для проверки и сохранения данных регистрации
-
-                // Пример: скрываем форму регистрации и отображаем главную форму
-                this.Hide();
-                MainForm mainForm = new MainForm(nickname);
-                mainForm.Show();
+                MessageBox.Show("Пользователь с таким именем уже существует.");
+                return;
             }
-            else
-            {
-                MessageBox.Show("Введите имя пользователя и пароль!");
-            }
-            //
 
-            // Пример: просто выводим информацию о зарегистрированном пользователе
-            MessageBox.Show($"Пользователь {nickname} успешно зарегистрирован!");
+            // Создание нового пользователя и сохранение его в базе данных
+            var newUser = new UDPServer.User { Username = username, Password = password };
+            dbContext.Users.Add(newUser);
+            dbContext.SaveChanges();
+
+            MessageBox.Show("Регистрация успешна!");
         }
+
+
     }
 }

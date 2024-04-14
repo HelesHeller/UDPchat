@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 
+
 namespace UDPServer
 {
     public class ApplicationContext : DbContext

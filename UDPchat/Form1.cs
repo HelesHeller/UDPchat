@@ -7,7 +7,7 @@ namespace UDPChat
 {
     public partial class MainForm : Form
     {
-        private UDPServer udpServer;
+        
         private string nickname;
 
 
@@ -15,7 +15,7 @@ namespace UDPChat
         {
             InitializeComponent();
             this.nickname = nickname;
-            udpServer = new UDPServer(nickname);
+            
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -36,37 +36,14 @@ namespace UDPChat
         private void UpdateChatBox(string message)
         {
             listBoxChat.Items.Add(message);
-            UpdateChatList(UDPServer.GetChatList());
-            UpdateParticipantList(UDPServer.GetParticipantList());
+            
         }
 
 
-        private void ConnectToServer()
-        {
-            try
-            {
-                udpServer.StartListening();
-                UpdateChatList(UDPServer.GetChatList());
-                UpdateParticipantList(UDPServer.GetParticipantList());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка подключения к серверу: {ex.Message}");
-            }
-        }
+        
 
 
-        private void DisconnectFromServer()
-        {
-            try
-            {
-                udpServer.StopListening();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка отключения от сервера: {ex.Message}");
-            }
-        }
+        
 
         private void SendMessageToServer(string message)
         {
