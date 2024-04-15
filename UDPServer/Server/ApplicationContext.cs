@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.SqlServer;
 
 
-namespace UDPServer
+namespace TCPServer
 {
     public class ApplicationContext : DbContext
     {
@@ -15,7 +15,7 @@ namespace UDPServer
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=HELES; Database=UserRegistrationDB; Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Data Source=HELES;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
             }
         }
     }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 
 
-namespace UDPServer
+namespace TCPServer
 {
 
     public class UDPServer

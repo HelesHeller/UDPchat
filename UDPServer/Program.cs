@@ -1,50 +1,66 @@
 ﻿using System;
-using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
 
-namespace UDPServer
+namespace TCPServer
 {
     class Program
     {
         static void Main(string[] args)
         {
-            using (var db = new ApplicationContext())
+            StartServer();
+        }
+
+        static void StartServer()
+        {
+            // Устанавливаем IP-адрес и порт для прослушивания
+            string ipAddress = "127.0.0.1";
+            int port = 8888;
+
+            // Создаем TCPListener для прослушивания входящих подключений
+            TcpListener listener = new TcpListener(IPAddress.Parse(ipAddress), port);
+
+            try
             {
-                // Создание базы данных (если она еще не создана)
-                db.Database.EnsureCreated();
+                // Начинаем прослушивание
+                listener.Start();
+                Console.WriteLine("Сервер запущен...");
 
-                // Пример добавления нового пользователя
-                var newUser = new User { Username = "user1", Password = "password1" };
-                db.Users.Add(newUser);
-                db.SaveChanges();
-
-                // Пример выборки всех пользователей
-                Console.WriteLine("All users:");
-                foreach (var user in db.Users)
+                while (true)
                 {
-                    Console.WriteLine($"{user.ID}: {user.Username}");
+                    // Принимаем входящее подключение
+                    TcpClient client = listener.AcceptTcpClient();
+                    Console.WriteLine("Установлено подключение!");
+
+                    // Получаем поток сетевых данных для чтения и записи
+                    NetworkStream stream = client.GetStream();
+
+                    // Буфер для хранения полученных данных
+                    byte[] data = new byte[256];
+
+                    // Читаем данные из потока
+                    int bytes = stream.Read(data, 0, data.Length);
+                    string message = Encoding.UTF8.GetString(data, 0, bytes);
+                    Console.WriteLine($"Получено сообщение: {message}");
+
+                    // Отправляем ответ клиенту
+                    string response = "Сообщение получено!";
+                    byte[] responseData = Encoding.UTF8.GetBytes(response);
+                    stream.Write(responseData, 0, responseData.Length);
+
+                    // Закрываем подключение
+                    client.Close();
                 }
-
-                // Пример добавления нового чата
-                var newChat = new Chat { Name = "General" };
-                db.Chats.Add(newChat);
-                db.SaveChanges();
-
-                // Пример добавления нового сообщения
-                var newMessage = new Message("Hello, world!", newUser.Username)
-                {
-                    Text = "Hello, world!",
-                    SenderUsername = newUser.Username
-                };
-
-                db.Messages.Add(newMessage);
-                db.SaveChanges();
-
-                // Пример выборки всех сообщений в чате
-                Console.WriteLine($"Messages in chat '{newChat.Name}':");
-                foreach (var message in db.Messages)
-                {
-                    Console.WriteLine($"{message.Id}: {message.Text} ({message.Timestamp})");
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+            finally
+            {
+                // Останавливаем прослушивание
+                listener.Stop();
             }
         }
     }

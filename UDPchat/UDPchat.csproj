@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UDPServer\UDPServer.csproj" />
+    <ProjectReference Include="..\UDPServer\TCPServer.csproj" />
   </ItemGroup>
 
 </Project>

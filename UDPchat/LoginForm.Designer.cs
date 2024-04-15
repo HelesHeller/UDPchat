@@ -29,85 +29,94 @@ namespace UDPchat
         /// </summary>
         private void InitializeComponent()
         {
-
-            this.labelUsername = new System.Windows.Forms.Label();
-            this.labelPassword = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.linkRegister = new System.Windows.Forms.LinkLabel();
-            this.SuspendLayout();
+            labelUsername = new Label();
+            labelPassword = new Label();
+            txtUsername = new TextBox();
+            txtPassword = new TextBox();
+            btnLogin = new Button();
+            linkRegister = new LinkLabel();
+            SuspendLayout();
             // 
             // labelUsername
             // 
-            this.labelUsername.AutoSize = true;
-            this.labelUsername.Location = new System.Drawing.Point(30, 50);
-            this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(58, 13);
-            this.labelUsername.TabIndex = 0;
-            this.labelUsername.Text = "Username:";
+            labelUsername.AutoSize = true;
+            labelUsername.Location = new Point(46, 66);
+            labelUsername.Margin = new Padding(4, 0, 4, 0);
+            labelUsername.Name = "labelUsername";
+            labelUsername.Size = new Size(63, 15);
+            labelUsername.TabIndex = 0;
+            labelUsername.Text = "Username:";
             // 
             // labelPassword
             // 
-            this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(30, 80);
-            this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(56, 13);
-            this.labelPassword.TabIndex = 1;
-            this.labelPassword.Text = "Password:";
+            labelPassword.AutoSize = true;
+            labelPassword.Location = new Point(49, 95);
+            labelPassword.Margin = new Padding(4, 0, 4, 0);
+            labelPassword.Name = "labelPassword";
+            labelPassword.Size = new Size(60, 15);
+            labelPassword.TabIndex = 1;
+            labelPassword.Text = "Password:";
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(100, 50);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(150, 20);
-            this.txtUsername.TabIndex = 2;
+            txtUsername.BackColor = Color.Snow;
+            txtUsername.Location = new Point(117, 58);
+            txtUsername.Margin = new Padding(4, 3, 4, 3);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(174, 23);
+            txtUsername.TabIndex = 2;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(100, 80);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(150, 20);
-            this.txtPassword.TabIndex = 3;
+            txtPassword.BackColor = Color.Snow;
+            txtPassword.Location = new Point(117, 92);
+            txtPassword.Margin = new Padding(4, 3, 4, 3);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(174, 23);
+            txtPassword.TabIndex = 3;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(100, 120);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(75, 23);
-            this.btnLogin.TabIndex = 4;
-            this.btnLogin.Text = "Login";
-            this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            btnLogin.Location = new Point(203, 121);
+            btnLogin.Margin = new Padding(4, 3, 4, 3);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(88, 27);
+            btnLogin.TabIndex = 4;
+            btnLogin.Text = "Login";
+            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // linkRegister
             // 
-            this.linkRegister.AutoSize = true;
-            this.linkRegister.Location = new System.Drawing.Point(30, 160);
-            this.linkRegister.Name = "linkRegister";
-            this.linkRegister.Size = new System.Drawing.Size(103, 13);
-            this.linkRegister.TabIndex = 5;
-            this.linkRegister.TabStop = true;
-            this.linkRegister.Text = "Register an account";
-            this.linkRegister.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkRegister_LinkClicked);
-
+            linkRegister.ActiveLinkColor = Color.IndianRed;
+            linkRegister.AutoSize = true;
+            linkRegister.Location = new Point(49, 133);
+            linkRegister.Margin = new Padding(4, 0, 4, 0);
+            linkRegister.Name = "linkRegister";
+            linkRegister.Size = new Size(111, 15);
+            linkRegister.TabIndex = 5;
+            linkRegister.TabStop = true;
+            linkRegister.Text = "Register an account";
+            linkRegister.LinkClicked += linkRegister_LinkClicked;
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.linkRegister);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtUsername);
-            this.Controls.Add(this.labelPassword);
-            this.Controls.Add(this.labelUsername);
-            this.Name = "LoginForm";
-            this.Text = "Login";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LavenderBlush;
+            ClientSize = new Size(340, 161);
+            Controls.Add(linkRegister);
+            Controls.Add(btnLogin);
+            Controls.Add(txtPassword);
+            Controls.Add(txtUsername);
+            Controls.Add(labelPassword);
+            Controls.Add(labelUsername);
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "LoginForm";
+            Text = "Login";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         private void linkRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

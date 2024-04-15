@@ -20,7 +20,7 @@ namespace UDPChat
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ConnectToServer();
+            //ConnectToServer();
         }
 
         private void buttonSend_Click(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace UDPChat
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DisconnectFromServer();
+            //DisconnectFromServer();
         }
 
         private void UpdateChatBox(string message)
@@ -49,7 +49,7 @@ namespace UDPChat
         {
             try
             {
-                udpServer.SendMessage($"{nickname}: {message}"); // Отправляем сообщение с именем пользователя
+                //TCPServer.SendMessage($"{nickname}: {message}"); // Отправляем сообщение с именем пользователя
                 string formattedMessage = $"{nickname}: {message}"; // Форматирование сообщения для отображения в чате
                 listBoxChat.Items.Add(formattedMessage); // Добавление сообщения в список чата
                 textBoxMessage.Clear();

@@ -1,26 +1,18 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace UDPchat
 {
     public partial class RegisterForm : Form
     {
-        private readonly UDPServer.ApplicationContext dbContext;
-
+        private readonly TCPServer.ApplicationContext dbContext;
+        
 
         public RegisterForm()
         {
             InitializeComponent();
-            dbContext = new UDPServer.ApplicationContext();
+            dbContext = new TCPServer.ApplicationContext();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -37,13 +29,12 @@ namespace UDPchat
             }
 
             // Создание нового пользователя и сохранение его в базе данных
-            var newUser = new UDPServer.User { Username = username, Password = password };
+            var newUser = new TCPServer.User { Username = username, Password = password };
             dbContext.Users.Add(newUser);
             dbContext.SaveChanges();
 
             MessageBox.Show("Регистрация успешна!");
         }
-
 
     }
 }
