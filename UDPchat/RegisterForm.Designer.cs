@@ -91,7 +91,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LavenderBlush;
-            ClientSize = new Size(331, 220);
+            ClientSize = new Size(331, 188);
             Controls.Add(buttonRegister);
             Controls.Add(txtPassword);
             Controls.Add(labelPassword);

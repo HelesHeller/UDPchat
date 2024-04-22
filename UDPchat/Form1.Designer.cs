@@ -1,4 +1,5 @@
-﻿namespace UDPChat
+﻿
+namespace TCPChat
 {
     partial class MainForm
     {
@@ -63,11 +64,11 @@
             // panelChats
             // 
             panelChats.BackColor = Color.Snow;
+            panelChats.ForeColor = Color.Tomato;
             panelChats.Location = new Point(10, 7);
             panelChats.Name = "panelChats";
             panelChats.Size = new Size(116, 419);
             panelChats.TabIndex = 3;
-            //panelChats.Paint += panelChats_Paint;
             // 
             // panelParticipants
             // 

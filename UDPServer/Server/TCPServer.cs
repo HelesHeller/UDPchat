@@ -8,7 +8,7 @@ using System.Threading;
 namespace TCPServer
 {
 
-    public class UDPServer
+    public class TCPServer
     {
         private const int serverPort = 12121;
         private UdpClient client;
@@ -18,7 +18,7 @@ namespace TCPServer
         private List<string> participantList;
 
 
-        public UDPServer(string nickname)
+        public TCPServer(string nickname)
         {
             client = new UdpClient();
             serverEndPoint = new IPEndPoint(IPAddress.Parse("26.129.29.176"), serverPort);

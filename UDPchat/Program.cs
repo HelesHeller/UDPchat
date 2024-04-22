@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UDPchat;
 
-namespace UDPChat
+namespace TCPChat
 {
     internal static class Program
     {
