@@ -12,6 +12,7 @@ namespace TCPServer
         public string Text { get; set; }
         public DateTime Timestamp { get; set; }
         public string SenderUsername { get; set; } 
+        public string ChatName { get; set; }
 
         // Конструктор для создания сообщения
         public Message(string text, string senderUsername)

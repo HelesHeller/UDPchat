@@ -119,23 +119,31 @@ namespace TCPServer.Server
         public static async Task<string[]> GetMessagesForChat(string chatName)
         {
             List<string> messages = new List<string>();
-            // Здесь может быть логика получения сообщений для указанного чата из базы данных или другого источника данных
-            // Например, если сообщения хранятся в базе данных, можно сделать запрос к базе для получения всех сообщений для данного чата
-            // После получения сообщений их можно добавить в список messages
-
-            // Пример:
-             using (var dbContext = new MyDbContext())
-             {
-                var messagesFromDb = await dbContext.Messages.Where(m => m.ChatName == chatName).ToListAsync();
-                foreach (var message in messagesFromDb)
+    
+            try
+            {
+                // Создаем экземпляр контекста базы данных
+                using (var dbContext = new ApplicationContext())
                 {
-                    messages.Add(message.Content);
-                }
-             }
+                    // Используем метод Where для выборки сообщений по имени чата
+                    var messagesFromDb = await dbContext.Messages
+                        .Where(m => m.ChatName == chatName)
+                        .Select(m => m.Content) // Выбираем только содержимое сообщения
+                        .ToListAsync();
 
-            // Затем возвращаем массив сообщений
+                    // Добавляем каждое сообщение в список messages
+                    messages.AddRange(messagesFromDb);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting messages for chat '{chatName}': {ex.Message}");
+            }
+
+            // Возвращаем массив сообщений
             return messages.ToArray();
         }
+
 
     }
 }
