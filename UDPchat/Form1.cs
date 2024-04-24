@@ -128,7 +128,7 @@ namespace TCPChat
                 Server_chat server_chat = new Server_chat();
 
                 // ѕолучение сообщений дл€ указанного чата с сервера
-                string[] messages = server_chat.GetMessageForChat(chatName).Result;
+                string[] messages = Server_chat.GetMessageForChat(chatName).Result;
 
                 return await Server_chat.GetMessagesForChat(chatName);
             }
