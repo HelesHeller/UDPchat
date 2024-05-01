@@ -38,7 +38,7 @@
             // labelUsername
             // 
             labelUsername.AutoSize = true;
-            labelUsername.Location = new Point(35, 35);
+            labelUsername.Location = new Point(41, 19);
             labelUsername.Margin = new Padding(4, 0, 4, 0);
             labelUsername.Name = "labelUsername";
             labelUsername.Size = new Size(78, 15);
@@ -48,7 +48,7 @@
             // txtUsername
             // 
             txtUsername.BackColor = Color.Snow;
-            txtUsername.Location = new Point(38, 54);
+            txtUsername.Location = new Point(44, 38);
             txtUsername.Margin = new Padding(4, 3, 4, 3);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(233, 23);
@@ -57,7 +57,7 @@
             // labelPassword
             // 
             labelPassword.AutoSize = true;
-            labelPassword.Location = new Point(35, 104);
+            labelPassword.Location = new Point(41, 88);
             labelPassword.Margin = new Padding(4, 0, 4, 0);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new Size(96, 15);
@@ -67,7 +67,7 @@
             // txtPassword
             // 
             txtPassword.BackColor = Color.Snow;
-            txtPassword.Location = new Point(38, 123);
+            txtPassword.Location = new Point(44, 107);
             txtPassword.Margin = new Padding(4, 3, 4, 3);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(233, 23);
@@ -77,7 +77,7 @@
             // buttonRegister
             // 
             buttonRegister.BackColor = Color.Snow;
-            buttonRegister.Location = new Point(91, 152);
+            buttonRegister.Location = new Point(97, 136);
             buttonRegister.Margin = new Padding(4, 3, 4, 3);
             buttonRegister.Name = "buttonRegister";
             buttonRegister.Size = new Size(142, 27);
@@ -91,12 +91,13 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LavenderBlush;
-            ClientSize = new Size(331, 188);
+            ClientSize = new Size(327, 177);
             Controls.Add(buttonRegister);
             Controls.Add(txtPassword);
             Controls.Add(labelPassword);
             Controls.Add(txtUsername);
             Controls.Add(labelUsername);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Margin = new Padding(4, 3, 4, 3);
             Name = "RegisterForm";
             Text = "Регистрация";

@@ -40,7 +40,7 @@ namespace UDPchat
             // labelUsername
             // 
             labelUsername.AutoSize = true;
-            labelUsername.Location = new Point(46, 66);
+            labelUsername.Location = new Point(45, 30);
             labelUsername.Margin = new Padding(4, 0, 4, 0);
             labelUsername.Name = "labelUsername";
             labelUsername.Size = new Size(63, 15);
@@ -50,7 +50,7 @@ namespace UDPchat
             // labelPassword
             // 
             labelPassword.AutoSize = true;
-            labelPassword.Location = new Point(49, 95);
+            labelPassword.Location = new Point(48, 59);
             labelPassword.Margin = new Padding(4, 0, 4, 0);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new Size(60, 15);
@@ -60,7 +60,7 @@ namespace UDPchat
             // txtUsername
             // 
             txtUsername.BackColor = Color.Snow;
-            txtUsername.Location = new Point(117, 58);
+            txtUsername.Location = new Point(116, 22);
             txtUsername.Margin = new Padding(4, 3, 4, 3);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(174, 23);
@@ -69,7 +69,7 @@ namespace UDPchat
             // txtPassword
             // 
             txtPassword.BackColor = Color.Snow;
-            txtPassword.Location = new Point(117, 92);
+            txtPassword.Location = new Point(116, 56);
             txtPassword.Margin = new Padding(4, 3, 4, 3);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
@@ -78,7 +78,7 @@ namespace UDPchat
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(203, 121);
+            btnLogin.Location = new Point(202, 85);
             btnLogin.Margin = new Padding(4, 3, 4, 3);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(88, 27);
@@ -91,7 +91,7 @@ namespace UDPchat
             // 
             linkRegister.ActiveLinkColor = Color.IndianRed;
             linkRegister.AutoSize = true;
-            linkRegister.Location = new Point(49, 133);
+            linkRegister.Location = new Point(48, 97);
             linkRegister.Margin = new Padding(4, 0, 4, 0);
             linkRegister.Name = "linkRegister";
             linkRegister.Size = new Size(111, 15);
@@ -105,13 +105,14 @@ namespace UDPchat
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LavenderBlush;
-            ClientSize = new Size(340, 161);
+            ClientSize = new Size(340, 134);
             Controls.Add(linkRegister);
             Controls.Add(btnLogin);
             Controls.Add(txtPassword);
             Controls.Add(txtUsername);
             Controls.Add(labelPassword);
             Controls.Add(labelUsername);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Margin = new Padding(4, 3, 4, 3);
             Name = "LoginForm";
             Text = "Login";

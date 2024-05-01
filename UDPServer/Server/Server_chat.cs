@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -67,6 +68,7 @@ namespace TCPServer.Server
         public static async Task AddClient(TcpClient client)
         {
             clients.Add(client);
+            Console.WriteLine("Клиент добавлен");
         }
 
         public static async Task RemoveClient(TcpClient client)
@@ -116,9 +118,9 @@ namespace TCPServer.Server
                 }
             }
         }
-        public static async Task<string[]> GetMessagesForChat(string chatName)
+        public static async Task<List<Message>> GetMessagesForChat(string chatName)
         {
-            List<string> messages = new List<string>();
+            var messages = new List<Message>();
     
             try
             {
@@ -128,8 +130,8 @@ namespace TCPServer.Server
                     // Используем метод Where для выборки сообщений по имени чата
                     var messagesFromDb = await dbContext.Messages
                         .Where(m => m.ChatName == chatName)
-                        .Select(m => m.Content) // Выбираем только содержимое сообщения
                         .ToListAsync();
+                        
 
                     // Добавляем каждое сообщение в список messages
                     messages.AddRange(messagesFromDb);
@@ -141,7 +143,7 @@ namespace TCPServer.Server
             }
 
             // Возвращаем массив сообщений
-            return messages.ToArray();
+            return messages;
         }
 
 

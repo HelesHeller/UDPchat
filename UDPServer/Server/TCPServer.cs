@@ -21,7 +21,7 @@ namespace TCPServer
         public TCPServer(string nickname)
         {
             client = new UdpClient();
-            serverEndPoint = new IPEndPoint(IPAddress.Parse("26.129.29.176"), serverPort);
+            serverEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), serverPort);
             this.nickname = nickname;
         }
 

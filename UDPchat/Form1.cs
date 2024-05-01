@@ -1,8 +1,11 @@
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TCPServer;
 using TCPServer.Server;
+
 
 namespace TCPChat
 {
@@ -10,34 +13,42 @@ namespace TCPChat
     {
         private string nickname;
         private ChatHistory chatHistory;
+        private TCPServer.ApplicationContext dbContext;
 
         public MainForm(string nickname)
         {
             InitializeComponent();
             this.nickname = nickname;
             chatHistory = new ChatHistory();
+            dbContext = new TCPServer.ApplicationContext();
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
-            string[] chatList = GetChatList();
-            UpdateChatList(chatList);
-
-            string[] participantList = await GetParticipantListFromServer();
-            UpdateParticipantList(participantList);
-
-            if (chatList.Length > 0)
+            try
             {
-                JoinChat(chatList[0]);
+                using (var dbContext = new ApplicationContext())
+                {
+                    var chatService = new ChatService(dbContext);
+                    var chatList = chatService.GetChatList();
+                    UpdateChatList(chatList);
+                }
+
+                // Additional code as necessary
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading chats: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private async Task<string[]> GetParticipantListFromServer()
         {
             return await Server_chat.GetParticipantList();
         }
 
-        private void ReceiveMessage(string chatName, string message)
+        private void ReceiveMessage(string chatName, TCPServer.Message message)
         {
             chatHistory.AddMessage(chatName, message);
             UpdateChatHistory(chatName);
@@ -113,14 +124,14 @@ namespace TCPChat
             MessageBox.Show($"¬ы присоединились к чату '{chatName}'");
 
             //  од дл€ присоединени€ к выбранному чату на сервере и загрузки сообщений чата
-            string[] messages = await GetMessagesForChat(chatName);
-            foreach (string message in messages)
+            var messages = await GetMessagesForChat(chatName);
+            foreach (var message in messages)
             {
                 ReceiveMessage(chatName, message);
             }
         }
 
-        private async Task<string[]> GetMessagesForChat(string chatName)
+        private async Task<List<TCPServer.Message>> GetMessagesForChat(string chatName)
         {
             try
             {
@@ -128,15 +139,15 @@ namespace TCPChat
                 Server_chat server_chat = new Server_chat();
 
                 // ѕолучение сообщений дл€ указанного чата с сервера
-                string[] messages = Server_chat.GetMessageForChat(chatName).Result;
+                var messages = await Server_chat.GetMessagesForChat(chatName);
 
-                return await Server_chat.GetMessagesForChat(chatName);
+                return messages;
             }
             catch (Exception ex)
             {
                 // ќбработка ошибок, возникающих при получении сообщений
                 MessageBox.Show($"ќшибка при получении сообщений дл€ чата '{chatName}': {ex.Message}");
-                return new string[] { };
+                return new List<TCPServer.Message> { };
             }
         }
     }

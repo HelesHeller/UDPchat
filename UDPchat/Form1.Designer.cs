@@ -29,9 +29,12 @@ namespace TCPChat
             listBoxChat.BorderStyle = BorderStyle.None;
             listBoxChat.ForeColor = Color.Maroon;
             listBoxChat.FormattingEnabled = true;
+            listBoxChat.ImeMode = ImeMode.NoControl;
             listBoxChat.ItemHeight = 15;
             listBoxChat.Location = new Point(133, 7);
             listBoxChat.Margin = new Padding(4, 3, 4, 3);
+            listBoxChat.MaximumSize = new Size(705, 390);
+            listBoxChat.MinimumSize = new Size(705, 390);
             listBoxChat.Name = "listBoxChat";
             listBoxChat.Size = new Size(705, 390);
             listBoxChat.TabIndex = 0;
@@ -91,9 +94,10 @@ namespace TCPChat
             Controls.Add(listBoxChat);
             Controls.Add(textBoxMessage);
             ForeColor = Color.DarkRed;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Margin = new Padding(4, 3, 4, 3);
             Name = "MainForm";
-            Text = "UDP Chat";
+            Text = "Cherry Blossom Chat";
             Load += MainForm_Load;
             ResumeLayout(false);
             PerformLayout();

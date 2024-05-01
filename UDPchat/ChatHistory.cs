@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using TCPServer;
 
 namespace TCPChat
 {
@@ -14,14 +11,14 @@ namespace TCPChat
         {
             history = new Dictionary<string, List<string>>();
         }
-        public void AddMessage(string chatName, string message)
+        public void AddMessage(string chatName, TCPServer.Message message)
         {
             if (!history.ContainsKey(chatName))
             {
                 history[chatName] = new List<string>();
             }
 
-            history[chatName].Add(message);
+            history[chatName].Add(message.Text);
         }
         public List<string> GetChatHistory(string chatName)
         {
