@@ -9,58 +9,63 @@ namespace TCPServer
     {
         static void Main(string[] args)
         {
+            
+            //using (ApplicationContext db = new ApplicationContext())
+            //{
+            //    db.Database.EnsureCreated();
+            //}
             StartServer();
-        }
 
-        static void StartServer()
-        {
-            // Устанавливаем IP-адрес и порт для прослушивания
-            string ipAddress = "127.0.0.1";
-            int port = 8888;
-
-            // Создаем TCPListener для прослушивания входящих подключений
-            TcpListener listener = new TcpListener(IPAddress.Parse(ipAddress), port);
-
-            try
+            static void StartServer()
             {
-                // Начинаем прослушивание
-                listener.Start();
-                Console.WriteLine("Сервер запущен...");
+                // Устанавливаем IP-адрес и порт для прослушивания
+                string ipAddress = "127.0.0.1";
+                int port = 12121;
 
-                while (true)
+                // Создаем TCPListener для прослушивания входящих подключений
+                TcpListener listener = new TcpListener(IPAddress.Parse(ipAddress), port);
+
+                try
                 {
-                    // Принимаем входящее подключение
-                    TcpClient client = listener.AcceptTcpClient();
-                    Console.WriteLine("Установлено подключение!");
+                    // Начинаем прослушивание
+                    listener.Start();
+                    Console.WriteLine("Сервер запущен...");
 
-                    // Получаем поток сетевых данных для чтения и записи
-                    NetworkStream stream = client.GetStream();
+                    while (true)
+                    {
+                        // Принимаем входящее подключение
+                        TcpClient client = listener.AcceptTcpClient();
+                        Console.WriteLine("Установлено подключение!");
 
-                    // Буфер для хранения полученных данных
-                    byte[] data = new byte[256];
+                        // Получаем поток сетевых данных для чтения и записи
+                        NetworkStream stream = client.GetStream();
 
-                    // Читаем данные из потока
-                    int bytes = stream.Read(data, 0, data.Length);
-                    string message = Encoding.UTF8.GetString(data, 0, bytes);
-                    Console.WriteLine($"Получено сообщение: {message}");
+                        // Буфер для хранения полученных данных
+                        byte[] data = new byte[256];
 
-                    // Отправляем ответ клиенту
-                    string response = "Сообщение получено!";
-                    byte[] responseData = Encoding.UTF8.GetBytes(response);
-                    stream.Write(responseData, 0, responseData.Length);
+                        // Читаем данные из потока
+                        int bytes = stream.Read(data, 0, data.Length);
+                        string message = Encoding.UTF8.GetString(data, 0, bytes);
+                        Console.WriteLine($"Получено сообщение: {message}");
 
-                    // Закрываем подключение
-                    client.Close();
+                        // Отправляем ответ клиенту
+                        string response = "Сообщение получено!";
+                        byte[] responseData = Encoding.UTF8.GetBytes(response);
+                        stream.Write(responseData, 0, responseData.Length);
+
+                        // Закрываем подключение
+                        client.Close();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
-            finally
-            {
-                // Останавливаем прослушивание
-                listener.Stop();
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка: {ex.Message}");
+                }
+                finally
+                {
+                    // Останавливаем прослушивание
+                    listener.Stop();
+                }
             }
         }
     }

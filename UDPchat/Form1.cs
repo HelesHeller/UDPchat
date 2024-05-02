@@ -43,6 +43,7 @@ namespace TCPChat
         }
 
 
+
         private async Task<string[]> GetParticipantListFromServer()
         {
             return await Server_chat.GetParticipantList();
@@ -130,6 +131,30 @@ namespace TCPChat
                 ReceiveMessage(chatName, message);
             }
         }
+        private void buttonAddChat_Click(object sender, EventArgs e)
+        {
+            using (var addChatForm = new AddChatForm())
+            {
+                if (addChatForm.ShowDialog() == DialogResult.OK)
+                {
+                    var chatName = addChatForm.ChatName;
+                    var chatService = new ChatService(new ApplicationContext());
+                    chatService.AddChat(chatName);
+                    LoadChats();  // Update the chat list
+                }
+            }
+        }
+        private void LoadChats()
+        {
+            listBoxChat.Items.Clear();
+            var chatService = new ChatService(new ApplicationContext());
+            var chats = chatService.GetChatList();
+            foreach (var chat in chats)
+            {
+                listBoxChat.Items.Add(chat);
+            }
+        }
+
 
         private async Task<List<TCPServer.Message>> GetMessagesForChat(string chatName)
         {

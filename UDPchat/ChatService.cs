@@ -27,6 +27,7 @@ namespace TCPChat
         public void AddChat(string chatName)
         {
             // Add a new chat to the database
+            
             var newChat = new Chat { ChatName = chatName };
             dbContext.Chats.Add(newChat);
             dbContext.SaveChanges();

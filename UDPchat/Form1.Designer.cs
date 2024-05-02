@@ -1,5 +1,4 @@
-﻿
-namespace TCPChat
+﻿namespace TCPChat
 {
     partial class MainForm
     {
@@ -21,6 +20,7 @@ namespace TCPChat
             buttonSend = new Button();
             panelChats = new Panel();
             panelParticipants = new Panel();
+            buttonAddChat = new Button();
             SuspendLayout();
             // 
             // listBoxChat
@@ -29,7 +29,6 @@ namespace TCPChat
             listBoxChat.BorderStyle = BorderStyle.None;
             listBoxChat.ForeColor = Color.Maroon;
             listBoxChat.FormattingEnabled = true;
-            listBoxChat.ImeMode = ImeMode.NoControl;
             listBoxChat.ItemHeight = 15;
             listBoxChat.Location = new Point(133, 7);
             listBoxChat.Margin = new Padding(4, 3, 4, 3);
@@ -70,7 +69,7 @@ namespace TCPChat
             panelChats.ForeColor = Color.Tomato;
             panelChats.Location = new Point(10, 7);
             panelChats.Name = "panelChats";
-            panelChats.Size = new Size(116, 419);
+            panelChats.Size = new Size(116, 390);
             panelChats.TabIndex = 3;
             // 
             // panelParticipants
@@ -80,6 +79,19 @@ namespace TCPChat
             panelParticipants.Name = "panelParticipants";
             panelParticipants.Size = new Size(150, 419);
             panelParticipants.TabIndex = 4;
+            // 
+            // buttonAddChat
+            // 
+            buttonAddChat.BackColor = Color.MistyRose;
+            buttonAddChat.FlatStyle = FlatStyle.Flat;
+            buttonAddChat.ForeColor = Color.Maroon;
+            buttonAddChat.Location = new Point(10, 403);
+            buttonAddChat.Name = "buttonAddChat";
+            buttonAddChat.Size = new Size(116, 23);
+            buttonAddChat.TabIndex = 5;
+            buttonAddChat.Text = "Add Chat";
+            buttonAddChat.UseVisualStyleBackColor = false;
+            buttonAddChat.Click += buttonAddChat_Click;
             // 
             // MainForm
             // 
@@ -93,6 +105,7 @@ namespace TCPChat
             Controls.Add(buttonSend);
             Controls.Add(listBoxChat);
             Controls.Add(textBoxMessage);
+            Controls.Add(buttonAddChat);
             ForeColor = Color.DarkRed;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Margin = new Padding(4, 3, 4, 3);
@@ -108,5 +121,6 @@ namespace TCPChat
         private System.Windows.Forms.Button buttonSend;
         private System.Windows.Forms.Panel panelChats;
         private System.Windows.Forms.Panel panelParticipants;
+        private System.Windows.Forms.Button buttonAddChat;
     }
 }
